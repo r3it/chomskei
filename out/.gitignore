@@ -1,0 +1,6 @@
+*
+!.gitignore
+!diff
+!dom-diff
+!html
+!text-diff
