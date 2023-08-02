@@ -212,12 +212,15 @@ export class KintoneBrowser {
       /* alert ダイアログがポップアップされたときに accept するための設定。 */
       page.on("dialog", (dialog) => {
         this.logger.warn(`Alert dialog is popped up.`);
-        dialog.accept().then(() => {
+        dialog
+          .accept()
+          .then(() => {
             this.logger.warn(`Alert is accepted.`);
-        }).catch((error) => {
-            this.logger.warn(`Failed to Alert accepted.`)
-        });
-    });
+          })
+          .catch((error) => {
+            this.logger.warn(`Failed to Alert accepted.`);
+          });
+      });
       this.pages.set(subdomainName, page);
       return page;
     }

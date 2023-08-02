@@ -132,6 +132,7 @@ export async function scrapeHTMLFiles(
       }
     }
     if (thrownError !== undefined) {
+      // eslint-disable-next-line no-unsafe-finally
       throw thrownError;
     }
   }
