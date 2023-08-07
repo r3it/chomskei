@@ -210,10 +210,16 @@ export class KintoneBrowser {
       }
       const page = await this.browser.newPage();
       /* alert ダイアログがポップアップされたときに accept するための設定。 */
-      page.on("dialog", async (dialog) => {
+      page.on("dialog", (dialog) => {
         this.logger.warn(`Alert dialog is popped up.`);
-        await dialog.accept();
-        this.logger.warn("Alert is accepted.");
+        dialog
+          .accept()
+          .then(() => {
+            this.logger.warn(`Alert is accepted.`);
+          })
+          .catch((error) => {
+            this.logger.warn(`Failed to Alert accepted.`);
+          });
       });
       this.pages.set(subdomainName, page);
       return page;
